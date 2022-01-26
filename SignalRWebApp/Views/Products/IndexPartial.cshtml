@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SignalRWebApp.Models.Product>
+
+@Html.Hidden("NotifierEntity", (object)ViewBag.NotifierEntity)
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EspaciosTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EspaciosOcupados)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EspaciosDisponibles)
+        </th>
+        @*<th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EspaciosTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EspaciosOcupados)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EspaciosDisponibles)
+            </td>
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+            </td>*@
+        </tr>
+    }
+
+</table>

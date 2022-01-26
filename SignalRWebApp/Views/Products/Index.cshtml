@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SignalRWebApp.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<div id="tbProducts">
+    @Html.Partial("IndexPartial", Model)
+</div>
+
+@section scripts {
+
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    <script type="text/javascript">
+        var signalRHubInitialized = false;
+
+        $(function () {
+            InitializeSignalRHubStore();
+        });
+
+        function InitializeSignalRHubStore() {
+
+            if (signalRHubInitialized)
+                return;
+
+            try {
+                var clientHub = $.connection.productHub;
+
+                clientHub.client.broadcastMessage = function (message) {
+                    if (message === "Refresh")
+                        ReloadIndexPartial();
+                };
+
+                $.connection.hub.start().done(function () {
+                    clientHub.server.initialize($("#NotifierEntity").val());
+                    signalRHubInitialized = true;
+                });
+
+            } catch (err) {
+                signalRHubInitialized = false;
+            }
+        };
+
+        function ReloadIndexPartial() {
+
+            $.post('@(Url.Action("IndexPartial", "Products", null, Request.Url.Scheme))')
+                .done(function (response) {
+                    $("#tbProducts").html(response)
+                    if (!signalRHubInitialized)
+                        InitializeSignalRHubStore();
+                });
+        };
+    </script>
+}
+
+

@@ -1,0 +1,58 @@
+﻿@model SignalRWebApp.Models.Parqueadero
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Parqueadero</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EspaciosTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EspaciosTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EspaciosOcupados)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EspaciosOcupados)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EspaciosDisponibles)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EspaciosDisponibles)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ParqueaderoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SignalRWebApp.Models.Parqueadero>
+@Styles.Render("~/Content/Estilos.css")
+
+@{
+    ViewBag.Title = "Parqueaderos";
+}
+
+<h2>Parqueaderos</h2>
+
+<p>
+    <a href="/Parqueaderoes/Create" class="myButton">
+        Agregar
+        @*@Html.ActionLink("Create New", "Create")*@
+    </a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EspaciosTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EspaciosOcupados)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EspaciosDisponibles)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EspaciosTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EspaciosOcupados)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EspaciosDisponibles)
+            </td>
+            <td>
+
+                
+                @Html.ActionLink("Editar", "Edit", new { id = item.ParqueaderoID }, new { @class = "myButton Editar" })
+                @Html.ActionLink("Detalles", "Details", new { id = item.ParqueaderoID }, new { @class = "myButton Detalle" }) 
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.ParqueaderoID }, new { @class = "myButton Eliminar" })
+                
+            </td>
+        </tr>
+    }
+
+</table>
